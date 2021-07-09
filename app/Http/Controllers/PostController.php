@@ -27,7 +27,9 @@ class PostController extends Controller
 
         $post = Post::create($request->all());
 
-        return redirect()->route('posts.index');
+        return redirect()
+            ->route('posts.index')
+            ->with('message', 'Post criado com sucesso!');
     }
 
     public function show($id)
@@ -50,6 +52,30 @@ class PostController extends Controller
             ->route('posts.index')
             ->with('message', 'Post deletado com sucesso!');
 
+
+    }
+
+    public function edit($id)
+    {
+
+       if (!$post = Post::find($id)) {
+           return redirect()->back();
+       }
+
+       return view('admin.posts.edit', compact('post'));
+    }
+
+    public function update(StoreUpdatePost $request, $id)
+    {
+
+       if (!$post = Post::find($id)) {
+           return redirect()->back();
+       }
+
+       $post->update($request->all());
+
+       return redirect()
+        ->route('posts.index')->with('message', 'Post atualizado com sucesso!');
 
     }
 }

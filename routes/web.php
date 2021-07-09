@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::delete('post/{id}',[ PostController::class, 'destroy'])->name('posts.destroy');
+
+Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+Route::get('/posts/edit/{id}', [PostController::class, 'edit'] )->name('posts.edit');
+Route::delete('post/{id}', [ PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/posts/{id}', [PostController::class, 'show'] )->name('posts.show');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
