@@ -12,5 +12,3 @@
 @foreach ($posts as $post)
     <p> {{$post->title}} [ <a href="{{ route('posts.show', $post->id)}}">ver</a>] </p>
 @endforeach
-
-
